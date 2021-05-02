@@ -7,7 +7,7 @@ project(
 		'b_ndebug=if-release',
 		'b_lto=true'
 	],
-	meson_version: '>=0.50.0'
+	meson_version: '>=0.49.0'
 )
 
 libcurl_dep = dependency('libcurl')
