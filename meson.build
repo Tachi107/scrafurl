@@ -18,7 +18,8 @@ libscrafurl_dep = declare_dependency(
 		sources: 'libscrafurl'/'scrafurl.cpp',
 		dependencies: libcurl_dep
 	),
-	dependencies: libcurl_dep
+	dependencies: libcurl_dep,
+	include_directories: include_directories('.')
 )
 
 if meson.version().version_compare('>=0.54.0')
