@@ -13,6 +13,7 @@ Scrafurl::Scrafurl() {
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &_responseBody);
 	curl_easy_setopt(curl, CURLOPT_TCP_FASTOPEN, 1L);
+	curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 	curl_easy_setopt(curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
 	curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "http");
 }
