@@ -3,7 +3,7 @@ project(
 	'cpp',
 	version: '0.0.1',
 	default_options: [
-		'cpp_std=c++17',
+		'cpp_std=c++20',
 		'b_ndebug=if-release',
 		'b_lto=true'
 	],
@@ -14,7 +14,7 @@ libcurl_dep = dependency('libcurl')
 
 libscrafurl_dep = declare_dependency(
 	link_with: library(
-		'libscrafurl',
+		'scrafurl',
 		sources: 'libscrafurl'/'scrafurl.cpp',
 		dependencies: libcurl_dep
 	),
