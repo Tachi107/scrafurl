@@ -28,18 +28,6 @@ void Scrafurl::get(const std::string_view url) noexcept {
 	curl_easy_perform(curl);
 }
 
-[[deprecated]] void Scrafurl::post(const std::string_view url, const std::string_view header, const std::string_view request) noexcept {
-	Scrafurl::post(url, std::array{header}, request);
-}
-
-[[deprecated]] void Scrafurl::put(const std::string_view url, const std::string_view header, const std::string_view request) noexcept {
-	Scrafurl::put(url, std::array{header}, request);
-}
-
-[[deprecated]] void Scrafurl::patch(const std::string_view url, const std::string_view header, const std::string_view request) noexcept {
-	Scrafurl::patch(url, std::array{header}, request);
-}
-
 void Scrafurl::deletee(const std::string_view url) noexcept {
 	curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 	curl_easy_setopt(curl, CURLOPT_URL, url.data());
