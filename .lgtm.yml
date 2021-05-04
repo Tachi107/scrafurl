@@ -1,0 +1,74 @@
+path_classifiers:
+  library:
+  - subprojects
+extraction:
+  cpp:
+    prepare:
+      packages:
+      - libcurl4-openssl-dev
+      - python3-pip
+      - python3-setuptools
+      - ninja-build
+      - pkgconf
+      - clang
+      - libmpfr-dev
+      - libmpc-dev
+      - libisl-dev
+      - libzstd-dev
+      - automake
+      - gettext
+      - gperf
+      - dejagnu
+      - expect
+      - tcl
+      - autogen
+      - guile-2.2-dev
+      - flex
+      - texinfo
+      - texlive
+      - git
+      - diffutils
+      - patch
+      - bison
+    after_prepare:
+    - export LC_ALL=C.UTF-8
+    # Install GCC 10 from source
+    - export CC=clang
+    - export CXX=clang++
+    - git clone https://gcc.gnu.org/git/gcc.git --branch=releases/gcc-10 --single-branch --depth=1 --quiet
+    - cd gcc
+    - ./contrib/download_prerequisites >/dev/null 2>&1
+    - cd ..
+    - mkdir gcc-build
+    - cd gcc-build
+    - ../gcc/configure CC=clang CXX=clang++ CFLAGS='-march=native -w' CXXFLAGS='-march=native -w' --prefix=$HOME/.local --enable-languages=c,c++ --enable-checking=release --disable-bootstrap --with-gcc-major-version-only --with-default-libstdcxx-abi=new --enable-libstdcxx-time=yes --enable-linker-build-id --enable-gnu-unique-object --disable-plugin --disable-werror --enable-lto --with-cpu=native --with-arch=native --with-tune=native --disable-multilib --disable-libada --disable-libsanitizer --enable-silent-rules --quiet >/dev/null 2>&1
+    - make --jobs=$(nproc) --quiet >/dev/null 2>&1
+    - make install --quiet >/dev/null 2>&1
+    - export PATH=$HOME/.local/bin:$PATH
+    - export LD_LIBRARY_PATH=$HOME/.local/lib64:$HOME/.local/lib:$LD_LIBRARY_PATH
+    - export LIBRARY_PATH=$HOME/.local/lib64:$HOME/.local/lib:$LIBRARY_PATH
+    - export LD_RUN_PATH=$HOME/.local/lib64:$HOME/.local/lib:$LD_RUN_PATH
+    - export CPLUS_INCLUDE_PATH=$HOME/.local/include/c++/$(g++ -dumpspecs | grep --after-context=1 '*version:' | tail --lines=1):$CPLUS_INCLUDE_PATH
+    - export CPATH=$HOME/.local/include:$CPATH
+    - unset CC
+    - unset CXX
+    - cd ..
+    - ln --symbolic $HOME/.local/bin/gcc $HOME/.local/bin/cc
+    - export CC=$HOME/.local/bin/gcc
+    - export CXX=$HOME/.local/bin/g++
+    # Install gold from source
+    - curl --silent --remote-name --http2-prior-knowledge --proto https --proto-default https --tlsv1.2 https://ftp.gnu.org/gnu/binutils/binutils-2.35.2.tar.bz2
+    - tar xf binutils-2.35.2.tar.bz2
+    - mkdir binutils-build
+    - cd binutils-build
+    - ../binutils-2.35.2/configure CFLAGS='-march=native -w' CXXFLAGS='-march=native -w' --prefix=$HOME/.local --enable-gold=default --disable-ld --disable-libada --disable-bootstrap --enable-lto --disable-objc-gc --with-gcc-major-version-only --enable-plugins --enable-threads --disable-nls --enable-shared --with-cpu=native --with-arch=native --with-tune=native --disable-multilib --enable-silent-rules --quiet >/dev/null 2>&1
+    - make --jobs=$(nproc) --quiet >/dev/null 2>&1
+    - make install --quiet >/dev/null 2>&1
+    # Install latest Meson version
+    - pip3 install -qqq --user --ignore-installed meson
+    configure:
+      command:
+      - meson setup build
+    index:
+      build_command:
+      - meson compile -C build
