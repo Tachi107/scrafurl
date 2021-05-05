@@ -22,18 +22,6 @@ Scrafurl::~Scrafurl() {
 	curl_easy_cleanup(curl);
 }
 
-void Scrafurl::get(const std::string_view url) noexcept {
-	curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
-	curl_easy_setopt(curl, CURLOPT_URL, url.data());
-	curl_easy_perform(curl);
-}
-
-void Scrafurl::deletee(const std::string_view url) noexcept {
-	curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-	curl_easy_setopt(curl, CURLOPT_URL, url.data());
-	curl_easy_perform(curl);
-}
-
 [[nodiscard]] long Scrafurl::getResponseCode() const noexcept {
 	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &_responseCode);
 	return _responseCode;

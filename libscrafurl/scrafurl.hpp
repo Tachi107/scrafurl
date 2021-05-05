@@ -11,7 +11,17 @@ public:
 	Scrafurl();
 	~Scrafurl();
 
-	void get(std::string_view url) noexcept;
+	void get(const std::string_view url, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+		curl_easy_setopt(curl, CURLOPT_URL, url.data());
+		struct curl_slist* curlHeaders {nullptr};
+		const std::array headerArray {headers...};
+		for (const std::string_view header : headerArray) {
+			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		}
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
+		curl_easy_perform(curl);
+	}
 
 	void post(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
 		curl_easy_setopt(curl, CURLOPT_POST, 1L);
@@ -52,7 +62,17 @@ public:
 		curl_easy_perform(curl);
 	}
 
-	void deletee(std::string_view url) noexcept;
+	void deletee(const std::string_view url, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+		curl_easy_setopt(curl, CURLOPT_URL, url.data());
+		struct curl_slist* curlHeaders {nullptr};
+		const std::array headerArray {headers...};
+		for (const std::string_view header : headerArray) {
+			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		}
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
+		curl_easy_perform(curl);
+	}
 
 	[[nodiscard]] long getResponseCode() const noexcept;
 
