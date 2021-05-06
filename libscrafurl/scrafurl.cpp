@@ -32,6 +32,7 @@ Scrafurl::~Scrafurl() {
 }
 
 std::size_t Scrafurl::writeData(char* incomingBuffer, std::size_t size, std::size_t count, std::string* data) {
+	data->clear();
 	data->append(incomingBuffer, size * count);
 	return size * count;
 }
