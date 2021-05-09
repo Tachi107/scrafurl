@@ -10,7 +10,7 @@ project(
 	meson_version: '>=0.49.0'
 )
 
-libcurl_dep = dependency('libcurl')
+libcurl_dep = dependency('libcurl', version: '>=7.49.0')
 
 libscrafurl_dep = declare_dependency(
 	link_with: library(

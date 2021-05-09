@@ -87,7 +87,7 @@ public:
 		v1_1 = CURL_HTTP_VERSION_1_1,
 		v2 = CURL_HTTP_VERSION_2,
 		v2_tls = CURL_HTTP_VERSION_2TLS,
-		v3 = CURL_HTTP_VERSION_3
+		// v3 = CURL_HTTP_VERSION_3 requires libcurl 7.66.0
 	};
 
 private:
