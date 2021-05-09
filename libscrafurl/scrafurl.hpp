@@ -12,6 +12,7 @@ public:
 	~Scrafurl();
 
 	void get(const std::string_view url, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
@@ -24,6 +25,7 @@ public:
 	}
 
 	void post(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_POST, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
@@ -37,6 +39,7 @@ public:
 	}
 
 	void put(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
@@ -50,6 +53,7 @@ public:
 	}
 
 	void patch(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PATCH");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
@@ -63,6 +67,7 @@ public:
 	}
 
 	void deletee(const std::string_view url, const std::convertible_to<std::string_view> auto... headers) noexcept {
+		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
