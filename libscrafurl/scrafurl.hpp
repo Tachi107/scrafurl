@@ -16,7 +16,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {headers...};
+		const std::array headerArray {static_cast<std::string_view>(headers)...};
 		for (const std::string_view header : headerArray) {
 			curlHeaders = curl_slist_append(curlHeaders, header.data());
 		}
@@ -29,7 +29,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_POST, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {headers...};
+		const std::array headerArray {static_cast<std::string_view>(headers)...};
 		for (const std::string_view header : headerArray) {
 			curlHeaders = curl_slist_append(curlHeaders, header.data());
 		}
@@ -43,7 +43,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {headers...};
+		const std::array headerArray {static_cast<std::string_view>(headers)...};
 		for (const std::string_view header : headerArray) {
 			curlHeaders = curl_slist_append(curlHeaders, header.data());
 		}
@@ -57,7 +57,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PATCH");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {headers...};
+		const std::array headerArray {static_cast<std::string_view>(headers)...};
 		for (const std::string_view header : headerArray) {
 			curlHeaders = curl_slist_append(curlHeaders, header.data());
 		}
@@ -71,7 +71,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {headers...};
+		const std::array headerArray {static_cast<std::string_view>(headers)...};
 		for (const std::string_view header : headerArray) {
 			curlHeaders = curl_slist_append(curlHeaders, header.data());
 		}
