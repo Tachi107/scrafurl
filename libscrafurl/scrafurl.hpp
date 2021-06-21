@@ -6,12 +6,16 @@
 #include <array>
 #include <concepts>
 
+// NULL-terminated std::string_view
+template<typename type>
+concept Text = std::convertible_to<type, std::string_view> && (std::convertible_to<type, std::string> || std::convertible_to<type, const char*>);
+
 class Scrafurl {
 public:
 	Scrafurl();
 	~Scrafurl();
 
-	void get(const std::string_view url, const std::convertible_to<std::string_view> auto... headers) noexcept {
+	void get(const std::string_view url, const Text auto... headers) noexcept {
 		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
@@ -24,7 +28,7 @@ public:
 		curl_easy_perform(curl);
 	}
 
-	void post(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
+	void post(const std::string_view url, const std::string_view request, const Text auto... headers) noexcept {
 		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_POST, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
@@ -38,7 +42,7 @@ public:
 		curl_easy_perform(curl);
 	}
 
-	void put(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
+	void put(const std::string_view url, const std::string_view request, const Text auto... headers) noexcept {
 		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
@@ -52,7 +56,7 @@ public:
 		curl_easy_perform(curl);
 	}
 
-	void patch(const std::string_view url, const std::string_view request, const std::convertible_to<std::string_view> auto... headers) noexcept {
+	void patch(const std::string_view url, const std::string_view request, const Text auto... headers) noexcept {
 		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PATCH");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
@@ -66,7 +70,7 @@ public:
 		curl_easy_perform(curl);
 	}
 
-	void deletee(const std::string_view url, const std::convertible_to<std::string_view> auto... headers) noexcept {
+	void deletee(const std::string_view url, const Text auto... headers) noexcept {
 		_responseBody.clear();
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());

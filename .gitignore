@@ -1,5 +1,5 @@
 # Build directory
-build/
+/build/
 
 # Clangd cache
-.cache/clangd
+/.cache/clangd
