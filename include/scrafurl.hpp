@@ -26,6 +26,7 @@ public:
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_perform(curl);
+		curl_slist_free_all(curlHeaders);
 	}
 
 	void post(const std::string_view url, const std::string_view request, const Text auto... headers) noexcept {
@@ -40,6 +41,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request.data());
 		curl_easy_perform(curl);
+		curl_slist_free_all(curlHeaders);
 	}
 
 	void put(const std::string_view url, const std::string_view request, const Text auto... headers) noexcept {
@@ -54,6 +56,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request.data());
 		curl_easy_perform(curl);
+		curl_slist_free_all(curlHeaders);
 	}
 
 	void patch(const std::string_view url, const std::string_view request, const Text auto... headers) noexcept {
@@ -68,6 +71,7 @@ public:
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request.data());
 		curl_easy_perform(curl);
+		curl_slist_free_all(curlHeaders);
 	}
 
 	void deletee(const std::string_view url, const Text auto... headers) noexcept {
@@ -81,6 +85,7 @@ public:
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_perform(curl);
+		curl_slist_free_all(curlHeaders);
 	}
 
 	[[nodiscard]] long getResponseCode() const noexcept;
