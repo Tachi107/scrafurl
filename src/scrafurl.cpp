@@ -1,4 +1,5 @@
 #include <scrafurl.hpp>
+#include <cstdlib> /* std::atexit */
 
 // Must define static class members in cpp units
 std::once_flag Scrafurl::_isCurlInitialised;
@@ -6,6 +7,7 @@ std::once_flag Scrafurl::_isCurlInitialised;
 Scrafurl::Scrafurl() {
 	std::call_once(_isCurlInitialised, []() noexcept {
 		curl_global_init(CURL_GLOBAL_NOTHING);
+		std::atexit(curl_global_cleanup);
 	});
 	curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
