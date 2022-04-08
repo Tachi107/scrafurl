@@ -1,4 +1,4 @@
-#include <libscrafurl/scrafurl.hpp>
+#include <scrafurl.hpp>
 
 // Must define static class members in cpp units
 std::once_flag Scrafurl::_isCurlInitialised;
