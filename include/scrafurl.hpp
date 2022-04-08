@@ -20,9 +20,11 @@ public:
 		curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {static_cast<std::string_view>(headers)...};
-		for (const std::string_view header : headerArray) {
-			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		if constexpr (sizeof...(headers) != 0) {
+			const std::array headerArray {static_cast<std::string_view>(headers)...};
+			for (const std::string_view header : headerArray) {
+				curlHeaders = curl_slist_append(curlHeaders, header.data());
+			}
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_perform(curl);
@@ -34,9 +36,11 @@ public:
 		curl_easy_setopt(curl, CURLOPT_POST, 1L);
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {static_cast<std::string_view>(headers)...};
-		for (const std::string_view header : headerArray) {
-			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		if constexpr (sizeof...(headers) != 0) {
+			const std::array headerArray {static_cast<std::string_view>(headers)...};
+			for (const std::string_view header : headerArray) {
+				curlHeaders = curl_slist_append(curlHeaders, header.data());
+			}
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request.data());
@@ -49,9 +53,11 @@ public:
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {static_cast<std::string_view>(headers)...};
-		for (const std::string_view header : headerArray) {
-			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		if constexpr (sizeof...(headers) != 0) {
+			const std::array headerArray {static_cast<std::string_view>(headers)...};
+			for (const std::string_view header : headerArray) {
+				curlHeaders = curl_slist_append(curlHeaders, header.data());
+			}
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request.data());
@@ -64,9 +70,11 @@ public:
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PATCH");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {static_cast<std::string_view>(headers)...};
-		for (const std::string_view header : headerArray) {
-			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		if constexpr (sizeof...(headers) != 0) {
+			const std::array headerArray {static_cast<std::string_view>(headers)...};
+			for (const std::string_view header : headerArray) {
+				curlHeaders = curl_slist_append(curlHeaders, header.data());
+			}
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request.data());
@@ -79,9 +87,11 @@ public:
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_easy_setopt(curl, CURLOPT_URL, url.data());
 		struct curl_slist* curlHeaders {nullptr};
-		const std::array headerArray {static_cast<std::string_view>(headers)...};
-		for (const std::string_view header : headerArray) {
-			curlHeaders = curl_slist_append(curlHeaders, header.data());
+		if constexpr (sizeof...(headers) != 0) {
+			const std::array headerArray {static_cast<std::string_view>(headers)...};
+			for (const std::string_view header : headerArray) {
+				curlHeaders = curl_slist_append(curlHeaders, header.data());
+			}
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curlHeaders);
 		curl_easy_perform(curl);
