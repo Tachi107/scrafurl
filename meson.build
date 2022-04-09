@@ -40,5 +40,6 @@ install_headers('include'/'scrafurl.hpp')
 
 import('pkgconfig').generate(
 	libscrafurl,
-	description: 'Lightweight libcurl wrapper written in C++20'
+	description: 'Lightweight libcurl wrapper written in C++20',
+	requires: 'libcurl'
 )
