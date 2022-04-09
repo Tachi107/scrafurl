@@ -12,7 +12,7 @@ project(
 	],
 	license: 'LGPL-3.0-or-later',
 	meson_version: '>=0.49.0',
-	version: '0.0.1'
+	version: '0.0.2'
 )
 
 libcurl_dep = dependency('libcurl', version: '>=7.49.0')
