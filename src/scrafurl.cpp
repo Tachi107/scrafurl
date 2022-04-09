@@ -12,7 +12,7 @@ std::once_flag Scrafurl::_is_curl_initialised;
 
 Scrafurl::Scrafurl() {
 	std::call_once(_is_curl_initialised, []() noexcept {
-		curl_global_init(CURL_GLOBAL_NOTHING);
+		curl_global_init(CURL_GLOBAL_DEFAULT);
 		std::atexit(curl_global_cleanup);
 	});
 	curl = curl_easy_init();
