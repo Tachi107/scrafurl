@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Andrea Pappacoda
+ *
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ */
+
 #pragma once
 
 #include <curl/curl.h>

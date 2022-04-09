@@ -1,5 +1,6 @@
-# Build directory
-/build/
+# SPDX-FileCopyrightText: 2022 Andrea Pappacoda
+#
+# SPDX-License-Identifier: CC0-1.0
 
 # Clangd cache
 /.cache/clangd

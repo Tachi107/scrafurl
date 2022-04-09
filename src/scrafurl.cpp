@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Andrea Pappacoda
+ *
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ */
+
 #include <scrafurl.hpp>
 #include <cstdlib> /* std::atexit */
 

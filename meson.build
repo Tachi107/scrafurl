@@ -1,13 +1,18 @@
+# SPDX-FileCopyrightText: 2022 Andrea Pappacoda
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+
 project(
 	'scrafurl',
 	'cpp',
-	version: '0.0.1',
 	default_options: [
 		'cpp_std=c++20',
 		'b_ndebug=if-release',
 		'b_lto=true'
 	],
-	meson_version: '>=0.49.0'
+	license: 'LGPL-3.0-or-later',
+	meson_version: '>=0.49.0',
+	version: '0.0.1'
 )
 
 libcurl_dep = dependency('libcurl', version: '>=7.49.0')
