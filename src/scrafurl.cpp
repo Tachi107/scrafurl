@@ -23,7 +23,7 @@ Scrafurl::Scrafurl() {
 	curl_easy_setopt(curl, CURLOPT_TCP_FASTOPEN, 1L);
 	curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 	curl_easy_setopt(curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
-	curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "http");
+	curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "https");
 	_response_body.reserve(CURL_MAX_WRITE_SIZE);
 }
 
